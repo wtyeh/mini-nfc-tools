@@ -1,4 +1,4 @@
-import { byteToString, formatNullCharacter, throttle } from '../../utils/util'
+import { byteToString, formatNullCharacter, throttle, stringToArrayBuffer, addZeroByteToArrayBuffer } from '../../utils/util'
 
 Page({
   NFCAdapter: null,
@@ -147,10 +147,24 @@ Page({
       type: '',
       payload: ''
     }
-
+    const records = [
+      {
+        id: stringToArrayBuffer('mini-ios'),
+        tnf: 1,
+        type: stringToArrayBuffer('U'),
+        payload: addZeroByteToArrayBuffer(stringToArrayBuffer(`weixin://dl/business/?t=NwHhU1huRyu&cq=${writeItem.text}`))
+      },
+      {
+        id: stringToArrayBuffer('mini-android'),
+        tnf: 4,
+        type: stringToArrayBuffer('android.com:pkg'),
+        payload: stringToArrayBuffer('com.tencent.mm')
+      }
+    ] 
     // 执行写入
     NFCTab.writeNdefMessage({
-      uris: [writeItem.text],
+      // uris: [writeItem.text],
+      records: records,
       success: () => {
         title = '数据写入成功'
         icon = 'success'

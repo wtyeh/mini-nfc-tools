@@ -84,6 +84,20 @@ export const stringToArrayBuffer = function (str) {
   ).buffer
 }
 
+export const addZeroByteToArrayBuffer = function (arrayBuffer) {  
+  // 创建一个Uint8Array视图来操作ArrayBuffer的内容  
+  let uint8Array = new Uint8Array(arrayBuffer);  
+  
+  // 在Uint8Array的首位插入一个0x00字节  
+  let withZeroByte = new Uint8Array([0x00, ...uint8Array]);  
+  
+  // 创建一个新的ArrayBuffer来存储修改后的数据  
+  let newArrayBuffer = withZeroByte.buffer;  
+  
+  // 返回新的ArrayBuffer  
+  return newArrayBuffer;  
+};
+
 /**
  * 移除空字符
  */
@@ -131,13 +145,27 @@ export const throttle = (fn, interval) => {
  * 格式化得到aid值
  * @param {Object} buffer
  */
-// export const ab2hex = function (buffer) {
-//   var hexArr = Array.prototype.map.call(
-//     new Uint8Array(buffer),
+export const ab2hex = function (buffer) {
+  var hexArr = Array.prototype.map.call(
+    new Uint8Array(buffer),
 
-//     function (bit) {
-//       return ('00' + bit.toString(16)).slice(-2);
-//     }
-//   );
-//   return hexArr.join('');
-// };
+    function (bit) {
+      return ('00' + bit.toString(16)).slice(-2);
+    }
+  );
+  return hexArr.join('');
+};
+
+/**
+* params1： url
+* params2： 要获取参数
+*/
+export const getQueryVariable = function (query, variable) {
+  var vars = query.split("&");
+  for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) { return pair[1]; }
+  }
+  return (false);
+};
+

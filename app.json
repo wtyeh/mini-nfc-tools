@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/read/index",
+    "pages/read-tag/index",
     "pages/write/index",
     "pages/other/index",
     "pages/write-list/index"
@@ -13,7 +14,7 @@
       {
         "selectedIconPath": "static/image/tabbar/read-selected.png",
         "iconPath": "static/image/tabbar/read.png",
-        "pagePath": "pages/read/index",
+        "pagePath": "pages/read-tag/index",
         "text": "读取"
       },
       {
@@ -34,7 +35,7 @@
     "backgroundColor": "#f6f6f6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "千随",
+    "navigationBarTitleText": "NFC标签小助手",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

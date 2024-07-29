@@ -45,7 +45,7 @@ Page({
   onTapLoad: throttle(function () {
     const strContent = this.data.strContent.trim()
     // 按 '逗号' 和 '回车' 进行分割
-    const data = strContent.split(/[\n,，]/g)
+    const data = strContent.split(/[\n]/g)
     const list = []
     // 移除空数据
     for (let i = 0; i < data.length; i++) {
